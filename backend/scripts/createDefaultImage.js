@@ -1,0 +1,18 @@
+const fs = require('fs');
+const path = require('path');
+
+// Simple base64 encoded default profile image (gray circle with white user silhouette)
+const base64Image = 'iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEHUlEQVR4nO2dW4hNURiAv3HJZTQzRuSSkHtCSTKUJtdCkQfFA+XBA8oDDzzgQR5QHiQPbgMPcnmZKEOUW64duSUhcsl1zMh/1jrNOWfvc/bZe6+19l7rW9/TOWef9a+1vrPXf9fattDpdDqdbJoCk4ExwCSgL9AOqA/UAGoX/t0HeAJcA04DB4ATwBtHcruKdQSga/FYJ8LYVGkNzAV2A3eAH8DPMmMf8B4YIFqBQdQBVgEPCsKXK0JxvCskFMNQ4GYVxSgZG4AWUhUZRiPgIPBNVZRFJQ/GUO4wEXim4HA2IVvCtqoQzQb6u5ZzYmHWRTMsUxlqAEcLM7LGCqaYrTQEWJ+QoWiSDQEG25pZXQYuOQrRKD8aArcdhWe23G/FNKp6A6uBnJCgzJq5D9CWmLQqMa3aLiggs8N9PBGOVpnfTjZ1RYVjtvT3S5GdJ9OBnwIDydngmAUskiI2T5pLm+OJGz8yqcKnilskhWKelHNZWoASxRgNTIiymPeiw7AwdohTnFkOnJEqMK+YP9ROodEE+FN4TrMHmJ5QEU1FtWOhonx+YD8wF3iTUEH70xoY5lpCBTQFniiexzw+3ZZmr8QKecG10FnFonzMp0uZnEr1jVa+fmPppcIivgG2+BwupFpIS9dSKxUTIqnx0wowKKxCppZz0TgwXWERc9K4qK91LXbx5eTHio9F+f/rWTHFLHctdwmDFBewzueRj1LiqS/+E7xPLSpGrMQFLAooJr8DFGUhmUDXdPQFPgUUMh8YCPTK4JwOAR8CF5O2Qrq7lvrLNgXFbLG4wKbAtxiFLA7hgtcVFbM6jBJZGEIht0sU0iiE6zYHfvo8T6oKaZfBOZl9kC1hFLMjJYUEpWUYxZxMSSHVwihmawoKGRBGMW9TUMjsMIrZnIJCQtsKWZKCQqaFUcysFBQyJoxCRqagkKkppJ5rubdTUMhM13JvSUEhi1MJXR1YFkYx90MoZIFruR8JWcxXYG7IY+VHH/LLDlyBbzlmRCTG5xDG8KrOeZLCVh12XJT4HGaFMIbZMJwCTHMtVgm2RiRGbhvP95bCIlZHOE4D11KV4FKEw0PTz0nkuxMJMz+CcU5mZXiySkRUzADXIpXhiKKD1Nkpbce4pqiQF65F8mOEwkJieyQjjXGKinkPNHItUlmWKChkveuwyjJQQTH3UjT7Ki7mRMRjLXEd2L8YGONYKSzkI9DetVRVYb2ioZKLsKuZL9MJGM4Wmok1aQ3LzBf6KhrWpXnFsNJ1tFk0RdF25NJzB5NPV0WHXw+B3q5jsxU3FBd0q8R5AuYjgO8Vh5Z3HVdS2KEorHPAItdBJcUoRYFtistzBBbTSNEPa9K0TXItJqVgv6LAdmQtq+sTlDTfEKWNVbp/mQt0UuRxwOzSbEp7N0Sn0+l0sH/bsR41SWpbGAAAAABJRU5ErkJggg==';
+
+// Create the public directory if it doesn't exist
+const publicDir = path.join(__dirname, '../public');
+if (!fs.existsSync(publicDir)) {
+  fs.mkdirSync(publicDir, { recursive: true });
+}
+
+// Save the image
+const outputPath = path.join(publicDir, 'default-profile.png');
+const imageBuffer = Buffer.from(base64Image, 'base64');
+fs.writeFileSync(outputPath, imageBuffer);
+
+console.log(`Default profile image created at: ${outputPath}`);

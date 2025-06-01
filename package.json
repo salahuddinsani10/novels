@@ -1,0 +1,20 @@
+{
+  "name": "novelistan-ai",
+  "version": "1.0.0",
+  "description": "NovelistanAI - A platform for authors and readers",
+  "private": true,
+  "scripts": {
+    "install-all": "npm install && cd backend && npm install && cd ../novelistan && npm install",
+    "start-backend": "cd backend && npm start",
+    "start-frontend": "cd novelistan && npm run dev",
+    "build-frontend": "cd novelistan && npm run build",
+    "deploy": "cd backend && npm run build"
+  },
+  "workspaces": [
+    "backend",
+    "novelistan"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

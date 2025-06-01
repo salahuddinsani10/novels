@@ -1,0 +1,14 @@
+node_modules/
+.env
+*.log
+.DS_Store
+dist/
+build/
+.vscode/
+backend/data/
+backend/uploads/
+
+# Sensitive configuration files
+backend/azure-settings.json
+*.secret.*
+
