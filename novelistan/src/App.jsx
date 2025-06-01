@@ -8,9 +8,11 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import WriteBookPage from './pages/WriteBookPage';
+import MyDraftsPage from './pages/MyDraftsPage';
 import AuthorHandling from './Author/AuthorHandling';
-import NotFoundPage from './NotFoundPage';
 import CustomerHandling from './Customer/CustomerHandling';
+import NotFoundPage from './pages/NotFoundPage';
 import { ThemeProvider } from './contexts/ThemeContext';
 
 const App = () => {
@@ -26,6 +28,8 @@ const App = () => {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/write-book" element={<WriteBookPage />} />
+          <Route path="/my-drafts" element={<MyDraftsPage />} />
           <Route path="/AuthorHandling/*" element={<AuthorHandling />} />
           <Route path="/CustomerHandling/*" element={<CustomerHandling />} />
           <Route path="*" element={<NotFoundPage/>} /> {/* Fallback */}

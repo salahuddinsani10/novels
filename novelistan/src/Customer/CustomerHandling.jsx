@@ -91,28 +91,28 @@ function CustomerHandling() {
                     </div>
                     
                     <nav className="flex-1 space-y-1">
-                        <NavLink to="/" end
+                        <NavLink to="/CustomerHandling" end
                             className={({isActive}) => `flex items-center gap-3 px-4 py-3 rounded-lg ${isActive ? 'bg-primary-600/50 text-white' : 'text-primary-100 hover:bg-primary-600/30'}`}
                         >
                             <Home className="w-5 h-5" />
                             <span>Home</span>
                         </NavLink>
                         
-                        <NavLink to="/books"
+                        <NavLink to="/CustomerHandling/books"
                             className={({isActive}) => `flex items-center gap-3 px-4 py-3 rounded-lg ${isActive ? 'bg-primary-600/50 text-white' : 'text-primary-100 hover:bg-primary-600/30'}`}
                         >
                             <BookOpen className="w-5 h-5" />
                             <span>Books</span>
                         </NavLink>
                         
-                        <NavLink to="/favorites"
+                        <NavLink to="/CustomerHandling/favorites"
                             className={({isActive}) => `flex items-center gap-3 px-4 py-3 rounded-lg ${isActive ? 'bg-primary-600/50 text-white' : 'text-primary-100 hover:bg-primary-600/30'}`}
                         >
                             <Heart className="w-5 h-5" />
                             <span>Favorites</span>
                         </NavLink>
                         
-                        <NavLink to="/settings"
+                        <NavLink to="/CustomerHandling/settings"
                             className={({isActive}) => `flex items-center gap-3 px-4 py-3 rounded-lg ${isActive ? 'bg-primary-600/50 text-white' : 'text-primary-100 hover:bg-primary-600/30'}`}
                         >
                             <Settings className="w-5 h-5" />
@@ -126,25 +126,25 @@ function CustomerHandling() {
             <div className="hidden md:flex flex-col fixed left-0 top-0 h-screen w-16 bg-primary-700 dark:bg-secondary-800 shadow-lg z-30">
                 <div className="flex flex-col items-center py-4 pt-28"> 
                     <nav className="flex flex-col items-center gap-4">
-                        <NavLink to="/" end
+                        <NavLink to="/CustomerHandling" end
                             className={({isActive}) => `w-10 h-10 flex items-center justify-center rounded-lg ${isActive ? 'bg-primary-600/50 text-white' : 'text-primary-100 hover:bg-primary-600/30'}`}
                         >
                             <Home className="w-5 h-5" />
                         </NavLink>
                         
-                        <NavLink to="/books"
+                        <NavLink to="/CustomerHandling/books"
                             className={({isActive}) => `w-10 h-10 flex items-center justify-center rounded-lg ${isActive ? 'bg-primary-600/50 text-white' : 'text-primary-100 hover:bg-primary-600/30'}`}
                         >
                             <BookOpen className="w-5 h-5" />
                         </NavLink>
                         
-                        <NavLink to="/favorites"
+                        <NavLink to="/CustomerHandling/favorites"
                             className={({isActive}) => `w-10 h-10 flex items-center justify-center rounded-lg ${isActive ? 'bg-primary-600/50 text-white' : 'text-primary-100 hover:bg-primary-600/30'}`}
                         >
                             <Heart className="w-5 h-5" />
                         </NavLink>
                         
-                        <NavLink to="/settings"
+                        <NavLink to="/CustomerHandling/settings"
                             className={({isActive}) => `w-10 h-10 flex items-center justify-center rounded-lg ${isActive ? 'bg-primary-600/50 text-white' : 'text-primary-100 hover:bg-primary-600/30'}`}
                         >
                             <Settings className="w-5 h-5" />

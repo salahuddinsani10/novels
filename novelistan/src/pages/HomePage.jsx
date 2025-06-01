@@ -41,41 +41,7 @@ const HomePage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Featured books data
-  const featuredBooks = [
-    {
-      id: 1,
-      title: "The Silent Echo",
-      author: "Elena Michaels",
-      cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-      rating: 4.8,
-      genre: "Mystery"
-    },
-    {
-      id: 2,
-      title: "Beyond the Horizon",
-      author: "Marcus Reed",
-      cover: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-      rating: 4.5,
-      genre: "Science Fiction"
-    },
-    {
-      id: 3,
-      title: "Whispers in the Wind",
-      author: "Sophia Chen",
-      cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-      rating: 4.7,
-      genre: "Fantasy"
-    },
-    {
-      id: 4,
-      title: "The Last Memory",
-      author: "James Wilson",
-      cover: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-      rating: 4.6,
-      genre: "Thriller"
-    }
-  ];
+  // No featured books data needed anymore
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-yellow-100 dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 font-sans">
@@ -181,9 +147,10 @@ const HomePage = () => {
           </h2>
           <p className="text-xl md:text-2xl mb-10 text-gray-700 dark:text-gray-300 max-w-3xl leading-relaxed">Your ultimate destination for discovering, reading, and publishing captivating stories that inspire and entertain.</p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-            <button className="w-full sm:w-auto bg-black text-yellow-400 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-yellow-800 hover:text-white transition shadow-md dark:bg-gray-700 dark:text-yellow-200 dark:hover:bg-gray-600">
-              Start Writing
-            </button>
+            <Link to="/write-book" className="w-full sm:w-auto bg-black text-yellow-400 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-yellow-800 hover:text-white transition shadow-md dark:bg-gray-700 dark:text-yellow-200 dark:hover:bg-gray-600 flex items-center justify-center">
+              <span className="mr-2">Start Writing</span>
+              <BookOpen className="h-5 w-5" />
+            </Link>
             <Link to="/signup" className="bg-gradient-to-r from-yellow-600 to-yellow-500 px-8 py-4 rounded-lg text-white hover:from-yellow-700 hover:to-yellow-600 transition shadow-md dark:from-yellow-700 dark:to-yellow-600 dark:hover:from-yellow-600 dark:hover:to-yellow-500 flex items-center justify-center transform hover:scale-105 duration-200">
               <span className="mr-2">Get Started</span>
               <ArrowRight className="h-5 w-5" />
@@ -192,46 +159,59 @@ const HomePage = () => {
         </div>
       </header>
 
-      {/* Featured Books Section */}
+      {/* Write Book Section */}
       <section className="py-16 container mx-auto px-4">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold text-yellow-800 dark:text-yellow-300">Featured Books</h2>
-          <Link to="/books" className="flex items-center text-yellow-600 dark:text-yellow-400 hover:text-yellow-800 dark:hover:text-yellow-200 transition-colors">
-            <span>View all</span>
-            <ChevronRight className="h-5 w-5" />
-          </Link>
-        </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredBooks.map(book => (
-            <div key={book.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-              <div className="h-64 overflow-hidden">
-                <img 
-                  src={book.cover} 
-                  alt={book.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                />
-              </div>
-              <div className="p-5">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200">{book.title}</h3>
-                  <span className="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 text-xs px-2 py-1 rounded">
-                    {book.genre}
-                  </span>
-                </div>
-                <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">by {book.author}</p>
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center">
-                    <Star className="h-4 w-4 text-yellow-500 mr-1" fill="currentColor" />
-                    <span className="text-gray-700 dark:text-gray-300 text-sm">{book.rating}</span>
+        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 dark:from-yellow-700 dark:to-yellow-800 rounded-2xl p-8 md:p-12 shadow-xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-400/20 rounded-full -mt-20 -mr-20"></div>
+          <div className="absolute bottom-0 left-0 w-40 h-40 bg-yellow-400/20 rounded-full -mb-10 -ml-10"></div>
+          
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="md:w-2/3">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Start Writing Your Book Today</h2>
+              <p className="text-yellow-100 text-lg mb-6">
+                Unleash your creativity with our intuitive writing tools. Create captivating stories, format your text with ease, and share your masterpiece with readers around the world.
+              </p>
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-center text-white">
+                  <div className="bg-white/20 rounded-full p-1 mr-3">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
-                  <button className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-800 dark:hover:text-yellow-200 text-sm font-medium">
-                    Read More
-                  </button>
+                  <span>Rich text editor with formatting options</span>
+                </li>
+                <li className="flex items-center text-white">
+                  <div className="bg-white/20 rounded-full p-1 mr-3">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span>Auto-save and cloud backup</span>
+                </li>
+                <li className="flex items-center text-white">
+                  <div className="bg-white/20 rounded-full p-1 mr-3">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span>Publish and share with our community</span>
+                </li>
+              </ul>
+              <Link to="/write-book" className="inline-flex items-center bg-white text-yellow-600 hover:bg-yellow-100 px-6 py-3 rounded-lg font-semibold transition shadow-lg hover:shadow-xl">
+                <span className="mr-2">Start Writing Now</span>
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            </div>
+            
+            <div className="md:w-1/3 flex justify-center">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-white/20 rounded-full animate-pulse"></div>
+                <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                  <BookOpen className="h-24 w-24 text-yellow-600 dark:text-yellow-400" />
                 </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 

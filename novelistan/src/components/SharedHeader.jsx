@@ -124,14 +124,18 @@ const SharedHeader = ({ userRole = 'customer' }) => {
   // Navigation links based on user role
   const navLinks = userRole === 'author' 
     ? [
-        { to: '/', label: 'Dashboard', icon: User },
-        { to: '/view-books', label: 'My Books', icon: BookOpen },
-        { to: '/add-book', label: 'Add Book', icon: Book }
+        { to: '/AuthorHandling', label: 'Dashboard', icon: User },
+        { to: '/AuthorHandling/view-books', label: 'My Books', icon: BookOpen },
+        { to: '/AuthorHandling/add-book', label: 'Add Book', icon: Book },
+        { to: '/write-book', label: 'Write Book', icon: PenTool },
+        { to: '/my-drafts', label: 'My Drafts', icon: Book }
       ]
     : [
-        { to: '/', label: 'Dashboard', icon: User },
-        { to: '/books', label: 'Browse Books', icon: BookOpen },
-        { to: '/favorites', label: 'Favorites', icon: Bell }
+        { to: '/CustomerHandling', label: 'Dashboard', icon: User },
+        { to: '/CustomerHandling/books', label: 'Browse Books', icon: BookOpen },
+        { to: '/CustomerHandling/favorites', label: 'Favorites', icon: Bell },
+        { to: '/write-book', label: 'Write Book', icon: PenTool },
+        { to: '/my-drafts', label: 'My Drafts', icon: Book }
       ];
   
   return (
