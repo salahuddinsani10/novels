@@ -9,32 +9,22 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     assetsDir: 'assets',
-    // Simplify build to avoid native module issues
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
       },
-      external: [],
-      output: {
-        manualChunks: undefined
-      }
     },
     minify: 'terser',
     target: 'es2018',
     chunkSizeWarningLimit: 1000,
   },
-  // Use relative paths for production builds
-  base: './',
-  // Avoid problematic dependencies
+  // Use absolute paths for production builds on Render
+  base: '/',
   optimizeDeps: {
-    // Disable optional dependencies
-    disabled: false,
     esbuildOptions: {
-      // Avoid native modules
       platform: 'browser'
     }
   },
-  // Force Vite to use the Node.js crypto module instead of the browser one
   resolve: {
     alias: {
       crypto: 'crypto-browserify',
