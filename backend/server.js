@@ -323,7 +323,18 @@ process.on('uncaughtException', (err) => {
 });
 
 // ======================
-// 8. Start Server
+// 8. Frontend Serving
+// ======================
+
+// In production, serve the frontend from the backend
+if (process.env.NODE_ENV === 'production') {
+  const setupFrontendServing = require('./serve-frontend');
+  setupFrontendServing(app);
+  logger.info('Frontend serving enabled in production mode');
+}
+
+// ======================
+// 9. Start Server
 // ======================
 
 const startServer = async () => {

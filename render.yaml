@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: novelistan
+    env: node
+    buildCommand: cd backend && npm run render-build
+    startCommand: cd backend && npm run render-start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8082
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: AZURE_STORAGE_ACCOUNT_NAME
+        sync: false
+      - key: AZURE_STORAGE_ACCOUNT_KEY
+        sync: false
+      - key: AZURE_STORAGE_CONTAINER_NAME
+        value: uploads
+      - key: AZURE_STORAGE_SAS_TOKEN
+        sync: false
