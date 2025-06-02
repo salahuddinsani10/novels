@@ -172,7 +172,7 @@ const LoginPage = () => {
           setTimeout(() => navigate('/AuthorHandling'), 1500);
         }
       } else if (selectedRole === 'customer') {
-        response = await axios.post(`${API_BASE_URL}/api/Customer/login`, {
+        response = await axios.post(`${API_BASE_URL}/api/customer/login`, {
           email: formData.email,
           password: formData.password,
         });
