@@ -8,6 +8,6 @@ rm -rf dist
 npm install --only=prod --no-optional
 
 # Run the static build script that doesn't use Vite/Rollup
-node static-build.js
+node static-build.mjs
 
 echo "Static build completed successfully!"
