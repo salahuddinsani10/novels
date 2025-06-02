@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "prebuild": "node -e \"try{require('fs').rmSync('node_modules/.vite', {recursive:true})}catch(e){}\"",
+    "build": "vite build --emptyOutDir",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -39,7 +40,7 @@
     "vite": "^4.3.9"
   },
   "overrides": {
-    "rollup": "^3.21.0"
+    "rollup": "3.29.4"
   },
   "engines": {
     "node": "20.x"
