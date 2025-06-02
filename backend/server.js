@@ -221,6 +221,91 @@ const connectDB = async () => {
 // 5. API Routes
 // ======================
 
+// Root route - redirect to frontend URL in production or show API status
+app.get('/', (req, res) => {
+  if (process.env.NODE_ENV === 'production') {
+    // In production, we'll serve a simple page with links to API documentation
+    res.send(`
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Novelistan</title>
+        <style>
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            color: #333;
+          }
+          h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+          }
+          .card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          }
+          .api-link {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #e7f5ff;
+            border-radius: 4px;
+            color: #0366d6;
+            text-decoration: none;
+          }
+          .api-link:hover {
+            background: #dbeeff;
+          }
+          .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: #d4edda;
+            color: #155724;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>Novelistan API</h1>
+        <div class="card">
+          <p>Status: <span class="status">Running</span></p>
+          <p>Version: 1.0.0</p>
+          <p>Environment: ${process.env.NODE_ENV}</p>
+        </div>
+        
+        <h2>API Endpoints</h2>
+        <a href="/api/book" class="api-link">/api/book - Book related operations</a>
+        <a href="/api/authors" class="api-link">/api/authors - Author operations</a>
+        <a href="/api/user" class="api-link">/api/user - User management</a>
+        <a href="/api/reviews" class="api-link">/api/reviews - Book reviews</a>
+        
+        <div class="card">
+          <h3>Note</h3>
+          <p>This is the API server for Novelistan. The frontend application should be deployed separately.</p>
+          <p>For more information, please refer to the project documentation.</p>
+        </div>
+      </body>
+      </html>
+    `);
+  } else {
+    // In development, just show API status
+    res.json({
+      success: true,
+      message: "API is running",
+      version: "1.0.0"
+    });
+  }
+});
+
 // API Routes
 app.use('/api/book', bookRoutes);
 app.use('/api/authors', authorRoutes);
@@ -326,12 +411,16 @@ process.on('uncaughtException', (err) => {
 // 8. Frontend Serving
 // ======================
 
-// In production, serve the frontend from the backend
-if (process.env.NODE_ENV === 'production') {
-  const setupFrontendServing = require('./serve-frontend');
-  setupFrontendServing(app);
-  logger.info('Frontend serving enabled in production mode');
-}
+// NOTE: We're now using a direct approach with a styled HTML page at the root route
+// instead of serving the full React frontend from the backend.
+// This simplifies deployment and reduces build complexity.
+
+// // In production, serve the frontend from the backend
+// if (process.env.NODE_ENV === 'production') {
+//   const setupFrontendServing = require('./serve-frontend');
+//   setupFrontendServing(app);
+//   logger.info('Frontend serving enabled in production mode');
+// }
 
 // ======================
 // 9. Start Server
