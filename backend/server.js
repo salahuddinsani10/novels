@@ -52,7 +52,8 @@ app.use(cors({
       'http://localhost:3000',                  // Local development URL
       'http://localhost:5173',                  // Vite dev server
       'https://novelistanai-backend-deployment-gkhae2hca5acf4b5.canadacentral-01.azurewebsites.net', // Azure backend URL
-      'https://polite-beach-0ccb55f0f.4.azurestaticapps.net'  // Azure Static Web Apps frontend URL
+      'https://polite-beach-0ccb55f0f.4.azurestaticapps.net' ,
+      'https://novelistan-frontend.vercel.app'
     ];
     
     if (allowedOrigins.indexOf(origin) !== -1) {
