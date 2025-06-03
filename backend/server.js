@@ -52,11 +52,15 @@ app.use(cors({
       'http://localhost:3000',                  // Local development URL
       'http://localhost:5173',                  // Vite dev server
       'https://novelistanai-backend-deployment-gkhae2hca5acf4b5.canadacentral-01.azurewebsites.net', // Azure backend URL
-      'https://polite-beach-0ccb55f0f.4.azurestaticapps.net' ,
+      'https://polite-beach-0ccb55f0f.4.azurestaticapps.net',
       'https://novelistan-frontend.vercel.app'
     ];
     
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    // For development, log the origin that's trying to access
+    logger.info(`Access attempt from origin: ${origin}`);
+    
+    // More permissive approach - either allow specific origins or any in production
+    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'production') {
       callback(null, true);
     } else {
       callback(null, false);
@@ -64,8 +68,12 @@ app.use(cors({
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization']
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
+  exposedHeaders: ['Access-Control-Allow-Origin']
 }));
+
+// Add a pre-flight response for OPTIONS requests
+app.options('*', cors());
 
 // Request logging middleware
 app.use((req, res, next) => {
